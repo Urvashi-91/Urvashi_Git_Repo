@@ -1,0 +1,76 @@
+%Switching to TRC query language
+/trc
+%Enabling multilinemode
+/multiline on
+/show_compilations on
+/show_sql on
+% Show database schema
+/dbschema
+%Query 1 -> Albums by the RHCP
+{
+	B.Title | 'Album'(B)
+	and (exists A)
+		(
+			'Artist' (A)
+			and A.Name='Red Hot Chili Peppers'
+			and B.ArtistId=A.ArtistId
+		)
+};
+%Query 2 -> Genres associated with the artist "U2."
+{
+	D.Name | 'Genre'(D)
+	and (exists A,B,C)
+		(
+			'Artist'(A) and 'Album'(B) and 'Track'(C)
+			and
+			A.Name='U2'
+			and
+			B.ArtistId=A.ArtistId
+			and
+			B.AlbumId=C.AlbumId
+			and
+			C.GenreId=D.GenreId
+		)	
+};
+%Query 3 -> Names of tracks on playlist "Grunge" and their associated artists and albums.
+{
+	C.Name,D.Title,E.Name | 'Track'(C) and 'Album'(D) and 'Artist'(E)
+	and (exists A,B)
+		(
+			'Playlist'(A)
+			and 'PlaylistTrack'(B)
+			and A.Name='Grunge'
+			and A.PlaylistId=B.PlaylistId
+			and B.TrackId=C.TrackId
+			and C.AlbumId=D.AlbumId
+			and D.ArtistId=E.ArtistId
+		)
+};
+%Query 4 -> Names and email addresses of customers who bought tracks in playlist "TV Shows."
+{
+	E.FirstName,E.LastName,E.Email | 'Customer'(E)
+	and (exists A,B,C,D)
+			'Playlist'(A) and A.Name='TV Shows'
+			and 'PlaylistTrack'(B) and B.PlaylistId=A.PlaylistId
+			and 'InvoiceLine'(C) and C.TrackId=B.TrackId
+			and 'Invoice'(D) and D.InvoiceId=C.InvoiceId
+			and E.CustomerId=D.CustomerId 
+};
+%Query 5 -> Names of the support representatives whose customers bought tracks in "Purchased AAC audio file" format.
+{
+	F.FirstName,F.LastName | 'Employee'(F)
+	and (exists A,B,C,D,E)
+		(
+			'MediaType'(A)
+			and 'Track'(B)
+			and 'InvoiceLine'(C)
+			and 'Invoice'(D)
+			and 'Customer'(E)
+			and A.Name='Purchased AAC audio file'
+			and A.MediaTypeId=B.MediaTypeId
+			and B.TrackId=C.TrackId
+			and C.InvoiceId=D.InvoiceId
+			and D.CustomerId=E.CustomerId
+			and E.SupportRepId=F.EmployeeId
+		)
+};

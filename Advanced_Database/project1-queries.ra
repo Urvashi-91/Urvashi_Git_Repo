@@ -1,0 +1,98 @@
+%Switch to Reltional Algebra quert=y language
+/ra
+%Enabling multiline mode
+/multiline on
+/show_compilations on
+/show_sql on
+% Show database schema
+/dbschema
+%Query 1 -> Albums by the RHCP
+project Title
+	(
+		(
+			project ArtistId
+				(
+					select Name='Red Hot Chili Peppers' (Artist)
+				)
+		)
+		njoin Album
+	);
+%Query 2 -> Genres associated with the artist "U2."
+project GenreId
+	(
+		project AlbumId
+			(
+				select Name='U2' (Artist njoin Album)
+			)
+		njoin Track
+	)
+njoin Genre;
+%Query 3 -> Names of tracks on playlist "Grunge" and their associated artists and albums.
+project TrackName,Name,Title
+	(
+		rename track_info (TrackName,Title,ArtistId)
+			(
+				project Name,Title,ArtistId
+					(
+						project Name,AlbumId
+							(
+								project TrackId
+									(
+										select Name='Grunge' (Playlist njoin PlaylistTrack)
+									)
+								njoin Track
+							)
+						njoin Album
+					)
+			)
+		njoin Artist
+	);
+%Query 4 -> Names and email addresses of customers who bought tracks in playlist "TV Shows."
+project FirstName,LastName,Email
+	(
+		project CustomerId
+			(
+				project InvoiceId
+					(
+						project TrackId
+							(
+								project TrackId
+									(
+select Name='TV Shows' (Playlist njoin PlaylistTrack)
+									)
+								njoin Track
+							)
+						njoin InvoiceLine
+					)
+				njoin Invoice
+			)
+		njoin Customer
+	);
+%Query 5 -> Names of the support representatives whose customers bought tracks in "Purchased AAC audio file" format.
+project FirstName,LastName
+	(
+		rename employee_info(EmployeeId)
+		(
+			project SupportRepId
+				(
+					project CustomerId
+						(
+							project InvoiceId
+								(
+									project TrackId
+										(
+									project MediaTypeId
+										(
+select Name='Purchased AAC audio file' (MediaType)
+										)
+									njoin Track
+										)
+								njoin InvoiceLine
+								)
+							njoin Invoice
+						)
+				njoin Customer
+				)
+		)
+		njoin Employee
+	);

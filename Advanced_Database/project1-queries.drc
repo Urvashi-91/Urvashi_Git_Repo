@@ -1,0 +1,55 @@
+%Switching to DRC query Language
+/drc
+%Enabling multiline mode
+/multiline on
+/show_compilations on
+/show_sql on
+%Query 1 -> Albums by the RHCP
+{
+	Title | (exists AlbumId,ArtistId)
+		(
+			'Album'(AlbumId,Title,ArtistId)
+			and (exists Name)
+				(
+					'Artist'(ArtistId,Name)
+					and Name='Red Hot Chili Peppers'
+				)
+		)
+};
+%Query 2 -> Genres associated with the artist "U2."
+{
+	GName | (exists GenreId) ('Genre'(GenreId,GName)
+		and (exists AlbumId) ('Track'(_,_,AlbumId,_,GenreId,_,_,_,_)
+		and (exists ArtistId) ('Album'(AlbumId,_,ArtistId)
+		and (exists Name) ('Artist'(ArtistId,Name)
+		and Name='U2'))))
+};
+%Query 3 -> Names of tracks on playlist "Grunge" and their associated artists and albums.
+{
+	Tname,Title,Aname | (exists ArtistId) ('Artist'(ArtistId,Aname) 
+			and (exists AlbumId) ('Album'(AlbumId,Title,ArtistId) 
+			and (exists TrackId) ('Track'(TrackId,Tname,AlbumId,_,_,_,_,_,_) 
+			and (exists PlaylistId) ('PlaylistTrack'(PlaylistId,TrackId)
+			and (exists Name) ('Playlist'(PlaylistId,Name) 
+			and Name='Grunge')))))
+};
+%Query 4 -> Names and email addresses of customers who bought tracks in playlist "TV Shows."
+{
+	FirstName,LastName,Email | (exists CustomerId) ('Customer'(CustomerId,FirstName,LastName,_,_,_,_,_,_,_,_,Email,_) 
+				and (exists InvoiceId) ('Invoice' (InvoiceId,CustomerId,_,_,_,_,_,_,_) 
+				and (exists TrackId) ('InvoiceLine'(_,InvoiceId,TrackId,_,_) 
+				and ('Track'(TrackId,_,_,_,_,_,_,_,_) 
+				and (exists PlaylistId) ('PlaylistTrack'(PlaylistId,TrackId) 
+				and (exists Name) ('Playlist'(PlaylistId,Name) 
+				and Name='TV Shows'))))))
+};
+%Query 5 -> Names of the support representatives whose customers bought tracks in "Purchased AAC audio file" format.
+{
+	FirstName,LastName | (exists EmployeeId) ('Employee'(EmployeeId,LastName,FirstName,_,_,_,_,_,_,_,_,_,_,_,_) 
+			and (exists CustomerId) ('Customer'(CustomerId,_,_,_,_,_,_,_,_,_,_,_,EmployeeId) 
+			and (exists InvoiceId) ('Invoice'(InvoiceId,CustomerId,_,_,_,_,_,_,_)
+			and (exists TrackId) ('InvoiceLine'(_,InvoiceId,TrackId,_,_) 
+			and (exists MediaTypeId) ('Track'(TrackId,_,_,MediaTypeId,_,_,_,_,_) 
+			and (exists Name) ('MediaType'(MediaTypeId,Name) 
+			and Name='Purchased AAC audio file'))))))
+};
