@@ -12,10 +12,7 @@ def minByCol(table:list, col_name:str) -> dict:
     print (min(col))
 
 
-def sortByCol(table:list, col_name:str) -> dict:
-
-
-
+#def sortByCol(table:list, col_name:str) -> dict:
 
 
 
@@ -24,3 +21,4 @@ def sortByCol(table:list, col_name:str) -> dict:
 table = [{"a":1, "b":2, "c":3, "d":5}, {"a":10, "d":1}, {"a": 2,"d": 9}]
 col_name = "d"
 minByCol(table, col_name)
+

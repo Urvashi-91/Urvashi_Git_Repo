@@ -46,3 +46,16 @@ print(vet_records_value)
 values = {"age": 12, "vaccinated": False} #Use dictionary to fill in gaps or mising values with the specified value
 vet_records_dict = vet_records.fillna(value=values) #filling na with values dictionary
 print (vet_records_dict.describe())
+
+
+table = [{'A':1, 'B':2, 'C':3}, {'A':10}]
+col = 'B'
+def minByColumn(table, col):
+     df = pd.DataFrame(table)
+     #print (df.dtypes)
+
+     #df = df.fillna(0)
+     #print(df)
+     #print ({col: df[col].min()})
+     return dict(df.loc[df[col].idxmin()])
+print(minByColumn(table, col))
