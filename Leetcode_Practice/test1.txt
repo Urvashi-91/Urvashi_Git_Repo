@@ -1,0 +1,24 @@
+def segments(message):
+	MAX_LENGTH = 160
+	l = MAX_LENGTH - 6
+	ptr = 0
+	segments = []
+	if (len(message) < MAX_LENGTH):
+		return ([message])
+
+	while ptr < len(message):
+		if len(message[ptr:ptr+l]) < l:
+			segments.append(message[ptr:ptr+l])
+			break
+		if ' ' in message[ptr:ptr+l]:
+			index = message[ptr:ptr+l].rindex(' ')
+		else:
+			index = l
+		end = index + ptr
+		segments.append(message[ptr:end])
+		ptr = end
+	count = 1
+	for i in range(0, len(segments)):
+		segments[i] = segments[i] + ' (' + str(count) + '/' + str(len(segments)) + ')'
+		count += 1
+	return (segments)
