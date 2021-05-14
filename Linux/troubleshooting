@@ -1,0 +1,44 @@
+Scenario 1: CPU overheats when upgrading, upgrade without overheating
+Solution 1: Check reason for oveheat in the 'systemd' via 'journalctl' and search for 'critical temprature'.
+            Have proper sensor modules loaded - 'sensors-detect'
+            Any culprit app -- CPU over used -- DC room poorly cooled -- failing h/w -- look for upgrade bugs
+            Use TLP to monitor heat/system under control -- cpufreq
+            
+Scenario 2: High site users, scale up your system that is getting popular
+Solution 2: Database Sharding -- Sharding based on TweetID -- Use Consistent Hashing to redistribute data -- each 
+            hash function return set of tweets and central server aggregate results and return to user. What if we can 
+            combine sharding by TweetID and Tweet creation time? If we don’t store tweet creation time separately and use
+            TweetID to reflect that, we can get benefits of both the approaches. This way it will be quite quick to find the latest Tweets. 
+            For this, we must make each TweetID universally unique in our system and each TweetID should contain a timestamp too.
+            We can use epoch time for this. Let’s say our TweetID will have two parts: the first part will be representing epoch seconds and 
+            the second part will be an auto-incrementing sequence. So, to make a new TweetID, we can take the current epoch time and append an 
+            auto-incrementing number to it. We can figure out the shard number from this TweetID and store it there.
+            
+Scenario 3: How to debug a remote server?
+Solution 3: Using a debugger running on the host and connects to program on target to fetch information about the system -- GDB server
+            GDB -- Execute this on host system to connect with target
+            gdbserver -- run this on target server
+            #gdbserver localhost:2000 my_program.py (target)
+            #gd my_program.py (host)
+            
+Scenario 4: How busy is the CPU?
+Solution 4: #top (cpu load) #mpstat (cpu activity) #sar (cpu utilization) #iostat (average usage)
+
+Scenario 5: What is loopback?
+Solution 5: In linux every n/w connection can be added using nmcli -- every n/w connection there is a loopback -- loopbac is TCP/IP utility
+            that allows interaction b/w Client and Server softwares -- troubleshooting using commands (ping, tracepath, traceroute)
+            The loopback device is a special, virtual network interface that your computer uses to communicate with itself. 
+            It is used mainly for diagnostics and troubleshooting, and to connect to servers running on the local machine.
+
+Scenario 6: How to change priroty of a process?
+Solution 6: renice or nice utiltity -- 
+            Nice command will launch a process with an user defined scheduling priority. 
+            Renice command will modify the scheduling priority of a running process. 
+            Linux Kernel schedules the process and allocates CPU time accordingly for each of them.
+
+Scenario 7: Why would the MAC address be wrong on the default interface on a newly created VM?
+Solution 7: udev rules are incorrectly written -- udev sets process that looks at hardware and sets that hardware up in /dev
+            udev uses persistence rules based on the MAC address of the network card. If it has an entry for eth1 with a known MAC address and a card appears with a different MAC address it will allocate a different ethX device name to the interface.
+            To counter this, you just need to update the udev rules. Edit:
+              #vi /etc/udev/rules.d/70-persistent-net.rules --> and look for the line with your current MAC:
+                  SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="11:22:33:44:55:66", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
