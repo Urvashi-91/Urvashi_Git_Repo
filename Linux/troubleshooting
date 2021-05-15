@@ -42,3 +42,46 @@ Solution 7: udev rules are incorrectly written -- udev sets process that looks a
             To counter this, you just need to update the udev rules. Edit:
               #vi /etc/udev/rules.d/70-persistent-net.rules --> and look for the line with your current MAC:
                   SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="11:22:33:44:55:66", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
+                  
+Scenario 8: How to view a url status without downloading its content?
+Solution 8: You may use curl instead to check if the URLs you are parsing are there without downloading any file as such:
+
+                        if curl --head --fail --silent "$url" >/dev/null; then
+                            touch .images/"${url##*/}"
+                        fi
+                        Explanation:
+
+                        --fail will make the exit status nonzero on a failed request.
+                        --head will avoid downloading the file contents
+                        --silent will avoid status or errors from being emitted by the check itself.
+                        To solve the "looping" issue, you can do:
+
+                        urls=( "${url%.jpg}"_{001..005}.jpg )
+                        for url in "${urls[@]}"; do
+                            if curl --head --silent --fail "$url" > /dev/null; then
+                                touch .images/${url##*/}
+                            fi
+                        done
+                        
+                        urls=( "${url%.jpg}"_{001..005}.jpg )
+                        for url in "${urls[@]}"; do
+                            if wget -q --method=HEAD "$url"; then
+                                touch .images/${url##*/}
+                            fi
+                        done
+              What this does is that it invokes Wget with the --method=HEAD option. With the HEAD request, the server will simply report back whether the file exists or not, 
+              without returning any data.
+            
+Scenario 9: What is a Database Index?
+Solution 9: A database index is a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space 
+            to maintain the index data structure. Indexes are used to quickly locate data without having to search every row in a database table every time a database table 
+            is accessed. Indexes can be created using one or more columns of a database table, providing the basis for both rapid random lookups and efficient access of ordered records.
+            
+            
+Scenario 10: For a Database that is Consistent or constantly Synchronised, would you require backups or not?
+Scenario 11: Service Types in Kubernetes
+Scenario 12: You are given disks with empty spaces, yet cannot write anything on the disks? What could be the reason?
+Scenario 13: Draw an architecture where a service is up most of the time
+SCENARIO 14: WHAT IS THE PURPOSE OF WITH STATEMENT IN PYTHON
+Scenario 15: How would you design a Build and Release system for IOT devices or sensors?
+Scenarios 16: How would you handle data from IOT or sensors devices? --> Stream data processing
