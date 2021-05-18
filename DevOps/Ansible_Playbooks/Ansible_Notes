@@ -1,0 +1,71 @@
+Ansible Playbooks use YAML syntax
+YAML - 
+  1) key-value pairs,lists(-), dict(key: value) 
+  2) File open with '---' and closes with '...'
+  3) Line breaks with YAML --> Use angle bracket (| and >)
+  4) Special characters --> []{}:>|
+  5) Boolean values --> "Yes"
+  
+Inventories - (.ini or yaml files)
+  1) List of hosts to run anisble against multiple systems
+  2) Default /etc/ansible/hosts
+  3) CLI: ansible -i <filename> in ansible.cfg
+  4) mail.example.com
+     [webservers]
+     xyz.example.com
+     ttt.example.com
+  5) Static vs Dynamic Inventory
+    a) Static: Maintained by hand
+    b) Dynamic: Executable scripts return JSON
+     
+Modules - 
+  1) Tools for particular tasks based on parameters
+  2) Return JSON after being run from command line or playbook
+  3) There are predefined modules and custom written modules
+  4) Common Modules:
+    a) Ping - validate server is up and reachable
+    b) Setup - gather ansible facts
+    c) Yum - use yum package manager (parameter = name)
+    d) Service - Control Daemon (parameter = name)
+    e) User - Manipulate System users (parameter = name)
+    f) Copy - Copy files (parameter = src and dest)
+    g) File - Work with files (parameter = path)
+    h) Git - Interact with git repo (parameter = repo and dest)
+  
+Variable -
+  1) Names should be letters(startsWith), numbers, and underscores and dictionaries
+  2) Used for configuration values and various paramters and store return values
+  3) Can be predefined
+  
+Facts -
+  1) Provides some information about a given target host
+  2) Discovered automatically by Ansible when it reaches out to a host
+  3) "ansible_facts": { "ansible_all_ipv4_addresses": ["172.xx.xx.xx"]}
+  
+Plays -
+  1) The goal of the play is to map a group of hosts to some well-defined roles.
+  2) A play may use one or more modules to achieve a desired end state on a group of hosts.
+  
+Playbooks -
+  1) Series of Plays
+  2) Deploy new web servers, install new application to existing application servers, run SQL against some db servers to support the new application
+  3) Playbook mode: ansible-playbook
+  
+Ad-hoc -
+  1) Effective one-liner commands to run ansible just like Playbook
+  2) Use Cases
+    a) Operational Commands --> (checking log contents, daemon control, process mgmt)
+    b) Informational commands --> (check installed s/w, check system properties, gather system performance information)
+    c) Research --> (work with unfamiliar modules, practice for playbook)
+    d) Ad-hoc mode: ansible
+    
+Configuration Files -
+  1) ANSIBLE_CONFIG --> environment variable
+  2) ansible.cfg --> in the current directory
+  3) .ansible.cfg --> in the home directory
+  4) /etc/ansible/ansible.cfg
+  5) Setting in enviroment variables:
+    a) ansible_managed
+    b) forks
+    c) inventory
+    
