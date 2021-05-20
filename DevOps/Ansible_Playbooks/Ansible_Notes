@@ -15,8 +15,9 @@ Inventories - (.ini or yaml files)
      xyz.example.com
      ttt.example.com
   5) Static vs Dynamic Inventory
-    a) Static: Maintained by hand
-    b) Dynamic: Executable scripts return JSON
+    a) Static: Maintained by hand (INI or YAML)
+    b) Dynamic: Executable scripts return JSON (Good for Cloud Resources)
+      b.1) The program/script must respond to two possible paramters: (--list, --host)
      
 Modules - 
   1) Tools for particular tasks based on parameters
@@ -36,6 +37,7 @@ Variable -
   1) Names should be letters(startsWith), numbers, and underscores and dictionaries
   2) Used for configuration values and various paramters and store return values
   3) Can be predefined
+  4) Should be stored in YAML files in inventory file location (group_vars/host)vars)
   
 Facts -
   1) Provides some information about a given target host
