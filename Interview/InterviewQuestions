@@ -1,0 +1,77 @@
+Can DNS use TCP? In which cases DNS uses TCP?
+How does 3 way handshake work in TCP?
+What’s void *?
+What’s the system call for creating files?
+Design an image sharing service like Imgur and come up with a bill of materials for serving 50.000 Queries per second (QPS).
+Design a log ingestion service like Stackdriver including indexing pipeline and frontend. Highlight the tradeoff differences of the components.
+Design an approach to distributed rate limiting of an API that can handle one million QPS hitting the API endpoints. Optimize for less cross-regional bandwidth and come up with a reasonable bill of materials.
+
+System calls, most importantly the popular ones like fork(), creat(), open(), read(), write(), exec(), stat(), but sometimes also less popular ones like sbrk() or mmap().
+General memory management, e.g. what does malloc() do internally and how to re-allocate and free memory.
+File system internals, like the role of inode or dentry.
+The lifecycle and the state of processes.
+Possibly a bit of scheduling and context switching but less likely the nitty gritty details in that area.
+Signaling and some details on how to send and catch signals. Which signals there are and if a particular signal is even visible to a process or is being handled at kernel level.
+All sorts 😉of sorting algorithms and their complexity. Stuff that we can find on the Big-O Cheat Sheet mostly.
+Networking basics, e.g. address and important field properties of popular protocols (Ethernet, IPv4, IPv6, TCP, UDP)
+IPv4 and IPv6 subnetting
+Possibly some out-of-the-hip shooting to well-known problems. For example the question could be There’s an array of 10,000 16​bit values, how do you count the bits most efficiently? and a good answer is to use an 8-bit lookup table or the Kernighan algorithm
+The basics of object oriented programming languages.
+What differentiates (statically) typed from untyped languages and how to cast types.
+Deepen my understanding of how computers work in general.
+Revisit how hardware and the operating system interact in certain constellations.
+Refresh a little on what makes a modern operating system. For example, update my knowledge on memory management, device management, scheduling and processes, synchronization, file systems and network drivers.
+Broaden my portfolio of tools used to inspect metrics and be able to reason about the metrics they show me. What does load average mean, anyway?
+Knowing more about common bottlenecks and how to verify them. For example, Is this slow process disk IO-bound or is it suffering from memory pressure effects? or Which one of these processes is the cause for frequent context switching and how could it become a better behaving citizen?
+Refresh a little on some networking edge cases, such as TCP window size problems or how the buffer queues look like during retransmit. I would call computer networking one of my stronger skills and spent almost no time in refreshing those skills. If I’d be new to computer networking I would read the TCP/IP Illustrated books by William Richard Stevens and Computer Networks by Andrew S. Tanenbaum.
+I needed to learn more from my own and others failures. That is, reading post mortems, going through reports on user mailing lists for distributed systems open source projects, and watching talks from conferences where folks showed off how they overcame bottlenecks and performance issues.
+Whenever possible I needed to practice troubleshooting. Pairing with others in troubleshooting can be very educating. I have learned about new tools and different approaches by watching over the shoulders of experienced troubleshooters.
+    
+    I was recently asked a question, would you rather have 1 million small files or huge file.
+[12:03 PM]
+or a single*
+For reading data, I'd say big file. Lot of small files will add overhead. Lot of open calls, lot of inode reading etc. 
+
+Disk bandwidth (io) remains constant in total.
+[12:06 PM]
+Remember copying lot of files was slow in Windows? Vs the one huge file
+Linux programming interface
+I came across a rate limiting related q in a code assessment today. 
+
+token bucket, fixed window, and sliding window algos are good to know for this. Just an FYI.
+def parse_file(file_name):
+    data_store = {}
+    with open(file_name, 'r') as file_data:
+        for line in file_data:
+            fields = re.match('(\w+\s\d+\s\d+:\d+:\d+)\s\w+\s(.+?):', line)
+            if not fields:
+                continue
+            date = fields.group(1)
+            process = fields.group(2).split('[', 1)[0]
+            # make a dictionary if it doesn't exist for a time
+            data_store[date] = data_store.get(date, {})
+            data_store[date][process] = data_store[date].get(process, 0) + 1
+    for time in data_store:
+        for proc in data_store[time]:
+            print(time, proc, data_store[time][proc])
+            FB PE: phone screen: troubleshooting memory issues in Linux, print a minefield grid, dinosaur csv problem, (didn’t pass)
+            ust cover VM, Anonymous/file backed, mmap, pros and cons
+            If you read and understand, LPI, operating system concepts, systems performance, tcp/ip illustrated and kubernetes internals you'll most definitely get an offer.
+            Apple DevOps: 1)reverse a string in Python 3 or 4 ways. 2) Unix questions on boot up, filesystem, kernel 3) find anagrams
+            2 years ago my Apple loop was
+1. Phone screen , light weight coding exercise. LC easy type, find occurrences of ints between two arrays
+2. On site loop: Linux internals, Java internals, white board how we could aggregate logs across numerous hosts, distributed systems (focussed a bit on how scatter gather requests can help and fail) , manager interview, “what happens when curl” 
+3. A week later went back for round with vp (discuss a project I had worked on)
+from friend's recent apple experience
+PS:
+ light linux Qs
+ simple coding Q
+OnSite
+ - k8s/docker/cloud basics
+ - design
+ - curl/what-happens-when
+ - troubleshooting
+ - 2 coding rounds
+
+don't know the exact questions
+Describe some syscalls, advantages of various raid configurations , process questions. 
