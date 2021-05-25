@@ -6,7 +6,9 @@ Output: "ay"
 '''
 
 
-
+'''
+Remove any two duplicate
+'''
 def removeDuplicates(s):
 
     stack = []
@@ -18,7 +20,9 @@ def removeDuplicates(s):
             stack.append(ch)
     return "".join(stack)
 
-
+'''
+Remove any number of duplicates
+'''
 def removeDuplicatesALL(s):
 
     output = []
@@ -34,6 +38,9 @@ def removeDuplicatesALL(s):
             i += 1
     return "".join(output)
 
+'''
+Remove k duplicates adjacent
+'''
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
         st = []  # char, freq
@@ -48,6 +55,20 @@ class Solution:
         for c, freq in st:
             ans.append(c * freq)
         return "".join(ans)
+
+
+class Solution:
+    def removeDuplicates(self, s: str, k: int) -> str:
+        stack = [['#', 0]]
+        for ch in s:
+            if stack[-1][0] == ch:
+                stack[-1][1] += 1
+                if stack[-1][1] == k:
+                    stack.pop()
+            else:
+                stack.append([ch, 1])
+        return ''.join(ch * k for ch, k in stack)
+
 
 print(removeDuplicates("azxxzy"))
 print(removeDuplicatesALL("abcd"))
