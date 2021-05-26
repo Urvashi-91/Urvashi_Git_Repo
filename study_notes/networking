@@ -1,0 +1,9 @@
+Q 1: Why would the MAC address be wrong on the default interface on a newly created VM?
+A 1: udev rules are incorrectly written -- udev sets process that looks at hardware and sets that hardware up in /dev
+     udev uses persistence rules based on the MAC address of the network card. If it has an entry for eth1 with a known MAC address 
+     and a card appears with a different MAC address it will allocate a different ethX device name to the interface.
+        To counter this, you just need to update the udev rules. 
+        Edit:#vi /etc/udev/rules.d/70-persistent-net.rules --> and look for the line with your current MAC:
+              SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="11:22:33:44:55:66", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
+ 
+Q 2: 
