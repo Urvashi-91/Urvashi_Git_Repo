@@ -1,15 +1,24 @@
-Can DNS use TCP? In which cases DNS uses TCP?
-How does 3 way handshake work in TCP?
-What’s void *?
-What’s the system call for creating files?
+Scenario 1: What is a Database Index?
+Solution 1: A database index is a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space 
+            to maintain the index data structure. Indexes are used to quickly locate data without having to search every row in a database table every time a database table 
+            is accessed. Indexes can be created using one or more columns of a database table, providing the basis for both rapid random lookups and efficient access of ordered records.
+
+Scenario 2: For a Database that is Consistent or constantly Synchronised, would you require backups or not?
+Solution 2: configured database mirroring or AlwaysOn availability group for these databases and then tried to execute backup on the secondary replica?
+            BACKUP DATABASE supports only copy-only full backups of databases, files, or filegroups when it is executed on secondary replicas. 
+            Because copy-only backups do not impact the log chain or clear the differential bitmap.
+            BACKUP LOG supports only regular log backups (the COPY_ONLY option is not supported for log backups on secondary replicas). 
+            A consistent log chain is ensured across log backups taken on any of the replicas (primary or secondary), irrespective of their availability mode.
+Solution 
+
+
 Design an image sharing service like Imgur and come up with a bill of materials for serving 50.000 Queries per second (QPS).
 Design a log ingestion service like Stackdriver including indexing pipeline and frontend. Highlight the tradeoff differences of the components.
 Design an approach to distributed rate limiting of an API that can handle one million QPS hitting the API endpoints. Optimize for less cross-regional bandwidth and come up with a reasonable bill of materials.
 
-System calls, most importantly the popular ones like fork(), creat(), open(), read(), write(), exec(), stat(), but sometimes also less popular ones like sbrk() or mmap().
-General memory management, e.g. what does malloc() do internally and how to re-allocate and free memory.
-File system internals, like the role of inode or dentry.
-The lifecycle and the state of processes.
+
+
+
 Possibly a bit of scheduling and context switching but less likely the nitty gritty details in that area.
 Signaling and some details on how to send and catch signals. Which signals there are and if a particular signal is even visible to a process or is being handled at kernel level.
 All sorts 😉of sorting algorithms and their complexity. Stuff that we can find on the Big-O Cheat Sheet mostly.
