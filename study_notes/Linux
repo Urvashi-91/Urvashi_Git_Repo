@@ -148,8 +148,14 @@ Solution 13: Superblock: file system metadata and defines the file system type, 
                      File system traversal is another aspect of the dentry as it maintains a relationship between directories and their files.
 Scenario 14: The lifecycle and the state of processes.
 Solution 14: 
-Scenario 12: You are given disks with empty spaces, yet cannot write anything on the disks? What could be the reason?
-Scenario 13: Draw an architecture where a service is up most of the time
-SCENARIO 14: WHAT IS THE PURPOSE OF WITH STATEMENT IN PYTHON
-Scenario 15: How would you design a Build and Release system for IOT devices or sensors?
-Scenarios 16: How would you handle data from IOT or sensors devices? --> Stream data processing
+Scenario 15: You are given disks with empty spaces, yet cannot write anything on the disks? What could be the reason?
+Scenario 16: Draw an architecture where a service is up most of the time
+SCENARIO 17: WHAT IS THE PURPOSE OF WITH STATEMENT IN PYTHON
+Scenario 18: How would you design a Build and Release system for IOT devices or sensors?
+Scenarios 19: How would you handle data from IOT or sensors devices? --> Stream data processing
+Scenario 20: You have a service Gerrit that is being restarted every 5 mins by systemd? troubleshoot (journalctl)
+Scenario 21: You have a Jenkins process that is running but the Jenkins User Interface is not up. Troubleshoot why? (dump)
+Scenario 22: You have to clone Git file which is huge in size and in USA, and you have to clone it in India. But the clone is getting timed out? Troubleshoot
+Scenraio 23: How would you monitor 1000 servers and generate reports based on the specified metrics?
+Scenrario 24: You are growing your enviroment and you need to migrate a baremetal based application on kubesystem. The application is running on Ubuntu12 and using old Python version. How would you plan the migration?
+
