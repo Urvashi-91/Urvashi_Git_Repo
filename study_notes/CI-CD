@@ -4,3 +4,16 @@ Automated Deploy --> 1. to Staging server 2.to Production server --> Install SSH
 Dockerize App --> Create Dockerfile (Fork Source code and clone) --> Build Docker image(docker build) --> Run Docker Image (8080) --> Configure Jenkins (Add creds of Webserver, DockerHub, GitHub) --> Config Global property (Prod_IP) --> Create Multibranch Pipeline (Add tokens) --> Create Jenkinsfile (Build and Push to Docker Hub and Deployto Production)
 Deploy Docker Image in Kubernetes as part of our pipeline --> Add Creds (Github repo, Github, DockerHub, kubeconfig(from master)) --> Create Kubernetes template (app-kube.yml)(Define Service and Deployment) --> Edit JenkinsFile (Add Stage to Deploy to Kubernetes Cluster) --> Create jenkins Project(run build from Github fork)
 Monitoring in Kubernetes --> Install and Configure Prometheus and Grafana in a Kubernetes Cluster --> Prometheus: (clone kubenetes charts, create Prometheus-values.yml (alert:persistentVolume), use help to install prometheus-values.yml)) --> Grafana: (clone kubernetes charts, create grafana-values.yml, use helm to install Grafana)
+
+Stress and Load testing --> Load tests help you understand how a system behaves under an expected load. 
+                            Stress tests help you understand the upper limits of a system's capacity using a load beyond the expected maximum.
+                            
+Canary testing --> Canary Testing is a way to reduce risk and validate new software by releasing software to a small percentage of users. 
+                   With canary testing, you can deliver to certain groups of users at a time.
+                   
+Some of the significant metrics while calculating the automated testing ROI are as follows:
+      1. The speed of the test execution. For instance, test duration and automated and manual test percentage.
+      2. Measuring the quality of the product. For instance, the unnoticed defect identification, mean time to detection of defects (MTTD), and overall quality of the build.
+      3. Cost analysis. For instance, software and hardware costs and the cost for defects prioritized by severity and operational costs.
+      4. Resource analysis. Like the requirement of new resources, cost of their training, billing, etc.
+      
