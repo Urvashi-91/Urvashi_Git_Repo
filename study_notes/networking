@@ -9,4 +9,5 @@ A 1: udev rules are incorrectly written -- udev sets process that looks at hardw
 Q 2: Does DNS uses TCP?
 A 2: DNS uses both TCP and UDP for valid reasons described below. UDP messages aren't larger than 512 Bytes and are truncated when greater than this size. DNS uses TCP for Zone transfer and UDP for name, 
      and queries either regular (primary) or reverse. UDP can be used to exchange small information whereas TCP must be used to exchange information larger than 512 bytes. If a client doesn't get response 
-     from DNS, it must retransmit the data using TCP after 3-5 seconds of interval. Consistency is maintained using TCP.
+     from DNS, it must retransmit the data using TCP after 3-5 seconds of interval. Consistency is maintained using TCP.DNS uses TCP for Zone transfer and UDP for name, and queries either regular (primary) or reverse. 
+       UDP can be used to exchange small information whereas TCP must be used to exchange information larger than 512 bytes.
