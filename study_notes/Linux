@@ -158,4 +158,14 @@ Scenario 21: You have a Jenkins process that is running but the Jenkins User Int
 Scenario 22: You have to clone Git file which is huge in size and in USA, and you have to clone it in India. But the clone is getting timed out? Troubleshoot
 Scenraio 23: How would you monitor 1000 servers and generate reports based on the specified metrics?
 Scenrario 24: You are growing your enviroment and you need to migrate a baremetal based application on kubesystem. The application is running on Ubuntu12 and using old Python version. How would you plan the migration?
-
+Scenario 25: What is context switching:
+Solution 25: Context Switching involves storing the context or state of a process so that it can be reloaded when required and execution can be resumed from the same point as earlier. 
+            This is a feature of a multitasking operating system and allows a single CPU to be shared by multiple processes.
+            Procedure: 1. Initially Process 1 is running. Process 1 is switched out and Process 2 is switched in because of an interrupt or a system call. 
+                       2. Context switching involves saving the state of Process 1 into PCB1 and loading the state of process 2 from PCB2. 
+                       3. After some time again a context switch occurs and Process 2 is switched out and Process 1 is switched in again. 
+                       4. This involves saving the state of Process 2 into PCB2 and loading the state of process 1 from PCB1.
+           
+Scenario 26: 
+            
+            
