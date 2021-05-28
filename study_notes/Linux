@@ -166,6 +166,9 @@ Solution 25: Context Switching involves storing the context or state of a proces
                        3. After some time again a context switch occurs and Process 2 is switched out and Process 1 is switched in again. 
                        4. This involves saving the state of Process 2 into PCB2 and loading the state of process 1 from PCB1.
            
-Scenario 26: 
+Scenario 26: Boot Process - Linux
+Solution 26: 1. BIOS - Searches hard drives, USB, CD-ROMs, network cards, or any other hardware it can boot from.
+             2. MBR: Master Boot Record, 512 bytes of HD this si where the boot code is.
+             3. 
             
             
