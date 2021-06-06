@@ -183,5 +183,7 @@ Solution 26: 1. BIOS - Searches hard drives, USB, CD-ROMs, network cards, or any
              3. 
  Scenario 27: How to enrypt Passwords?
  Solution 27: 
-            
-            
+ 
+ Scenario 28: Stateful set is for order of an application to start them in order
+ Scenarios 29: Persistance app
+Solution 29: PVPVC storage persistence Physical Volume (NFS storage) Physcial Volume Claim (Present to kubernetes volume for application)
