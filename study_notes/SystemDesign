@@ -82,3 +82,9 @@ Design Distributed Messaging System?
 Design Distributed Locking Service?
 - Chubby
  - -
+ 
+ 
+Design an image sharing service like Imgur and come up with a bill of materials for serving 50.000 Queries per second (QPS).
+
+Design a log ingestion service like Stackdriver including indexing pipeline and frontend. Highlight the tradeoff differences of the components.
+Design an approach to distributed rate limiting of an API that can handle one million QPS hitting the API endpoints. Optimize for less cross-regional bandwidth and come up with a reasonable bill of materials.
