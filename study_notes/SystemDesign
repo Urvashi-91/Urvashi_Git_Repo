@@ -1,0 +1,84 @@
+How do you upgrade kernel on 1000 servers and upgrade?
+- Ansible Playbook - 1000 servers as inventory ---apt update --- apt dist-upgrade -y --force-confdef --force-confold -- reboot
+- #ansible-playbook /path/to/playbook.yml --user=xyz
+
+How distribute files to millions of servers?
+- NAS/CIFS(Samba)/SCP/HTTP/BBCP(buffered parallel ssh)
+- Distribute files simultaneously to k servers then K^2 servers and so on.
+- Divide files into chunks (Distribute and receive at the same time like torrent)
+- servers on same n/w
+- - Divide file into 2000 parts, each server gets 5GB/2000 ~ 2.5 MB (file segment) to host and central acts as a beacon server to tell other server where the files are.
+   Each server would download these chunks in random order from other server, if we download sequentially then it causes bottleneck on one machine.
+   We can use some checksum for individual file segment & all files combined, to verify file integrity.
+- Batch processing with speed test on each node and distributing file as per capacity/batch size
+
+
+Petabytes of data and handling and keeps up and running - resilient at scale - how much bandwidth gigabyte….one server and many users?
+
+How do you monitor the file got their success — resiliency, monitoring?
+
+BigOS design?
+
+How to copy huge file in between two servers?
+- # requires netcat on both servers
+- nc -l -p 2342 | tar -C /target/dir -xzf -   # destination box
+- tar -cz /source/dir | nc Target_Box 2342    # source box
+
+Design Distributed File System?
+- Google File System
+- - System to system interaction
+- - API: create,delete,open,close,read,write instance of file || Snapshot, Append
+- - HDL: Many Clients <--> Master <--> Chunk Servers(1,2,3...)
+         Data --> Divided into Chunks of 64 MB --> Stored on Chunk Servers on local FS of Linux
+- - Fault tolerance: Master log files stored on remote servers and replicates data to remote servers.
+- - - Checkpointing: To recover from log files, checkpoint in memory can be referred.
+- - - Shadow masters: read only replica of master node
+- - - Primary replica replace with node by master
+- - HA: Chunks are replicated to multiple Chunk Servers
+- - Data Integrity: Checksum of data for reads, writes and appends
+- - Consistency: Replication and Versioning of chunk data
+- - Traffic Bottleneck: Client takes Chunk server info for its data from Master and communicates with Chunk server instead.
+- - Reduce latency: Use huge Data chunk size to reduce info exchange with master, open TCp connection with Chunk servers for longer period to reduce TCP overhead
+- - Space utilisation: Lazy space allocation as chunk data is synced chunk size is gradually increased
+- - Popular Files: Delay in the start time of the apps and higher replication factor
+- - Hash-Map: Filename to inode location, readers-writers lock for sync
+- - READ: App(filename, byte range) <--> (filedata) GFS Client (file name, chunk index) <--> (chunk handle, replica location) GFS Master Server 
+                                                          <--> (chunk handle, byte range) Chunk Server
+- - Snapshot: Copy on write
+- - Consistency: Metadata operations (e.g., file creation) are atomic. They are handled exclusively by the master. 
+    Namespace locking guarantees atomicity and correctness, whereas the master’s operation log defines a global total order of these operations.
+- - System design Pattern: Write-ahead Log, Heartbeat, Checksum
+
+Design Wide-Column NoSQL DB
+- Cassandra
+- - Distributed, Decentralised, Scalable and Highly Available
+- - CAP Theorem - Available and Partition Tolerant
+- - Peer-Peer architecture no Master node needed
+- - Cassandra Row --> Row Key(Primary) --> Column Key/Column Value
+- - Cluster of keyspaces --> Keyspaces of nodes --> Nodes with Cassandra --> Cassandra with NoSQL DB
+- - HLD:
+- - - Data Partitioning with consistent hashing using Partitioner which is the hask function
+- - - Cassandra Keys: Primary Key = Partitioning Key(city_id)+ Clustering Key (employee_id) 
+- - - Coordinator node is that node with which clinet connects and it identifies the node with clients data
+- - Replication:
+- - - Replication factor(number of nodes to store copy of data) + Replication Strategy (Simple or Network strategy to place data on nodes using partitioner)
+- - Consistency:
+- - - Based on a number/quorum of reads or writes to complete before the operation is considered successful
+- - - Snitch: determines speed of nodes and based on that write happens
+- - Gossiper: Nodes track each other's state
+- - Write: commit stored on disk --> then on MemTable --> When memtable full flush out to SSTable --> Periodic compact of SSTables
+- - Read: Row cache with row data --> key cache with memtable --> chunck cache from sstable
+- - - Bloom filter: Bloom filters are very fast, non-deterministic algorithms for testing whether an element is a member of a set.
+- - Comapction: Data based on partition key, keep latest data, remove deleted rows and sstables
+- - Tombstone: Deleted data from a recently recovered node whcih is not synced
+
+
+Design Distributed Messaging System?
+- Kafka
+- - Producers (of messages) --> Message broker (topic wise seggregation of messages) --> Subscriber (of each topic)
+- - HLD:
+- - - Procuders (Push) --> Kafka Cluster (brokers) --> Zookeeper (Master manager) --> Subscriber (Pull)
+
+Design Distributed Locking Service?
+- Chubby
+ - -
