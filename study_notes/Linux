@@ -187,3 +187,12 @@ Solution 26: 1. BIOS - Searches hard drives, USB, CD-ROMs, network cards, or any
  Scenario 28: Stateful set is for order of an application to start them in order
  Scenarios 29: Persistance app
 Solution 29: PVPVC storage persistence Physical Volume (NFS storage) Physcial Volume Claim (Present to kubernetes volume for application)
+
+
+Scenario 29: You are troubleshooting an app that is showing content not available. You can remotely access the application internet. Troublwshoot
+Solution 29: Traceroute application server - curl and see http response
+
+Scenario 29.1: How traceroute works?
+Scenario 29.2: How curl works?
+Scenario 29.2: What happends after tcp handshake/ at SSL/TLS level? How self signed certificate work?
+Scenario 29.3: 
