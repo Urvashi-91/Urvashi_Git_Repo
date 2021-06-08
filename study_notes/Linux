@@ -189,10 +189,16 @@ Solution 26: 1. BIOS - Searches hard drives, USB, CD-ROMs, network cards, or any
 Solution 29: PVPVC storage persistence Physical Volume (NFS storage) Physcial Volume Claim (Present to kubernetes volume for application)
 
 
-Scenario 29: You are troubleshooting an app that is showing content not available. You can remotely access the application internet. Troublwshoot
+Scenario 29: You are troubleshooting an app that is showing content not available. You can remotely access the application internet. Troubleshoot?
 Solution 29: Traceroute application server - curl and see http response
 
-Scenario 29.1: How traceroute works?
+Scenario 29.1: How traceroute works? How does it stop based on TTL? Where are the addresses given for the next hop?
 Scenario 29.2: How curl works?
 Scenario 29.2: What happends after tcp handshake/ at SSL/TLS level? How self signed certificate work?
-Scenario 29.3: 
+Scenario 29.3: What does too many open files error mean? How does lsof work? Where is the limit mentioned? How do you see anything in /proc?
+Scenario 20: Design a migration from On prem to Docker containers on Kubernetes cluster
+Scenario : SSH not working so you login to console (ilo) mysql-admin:# prompt what does this mean? How do you troubleshoot if none of the commands working (FORK: resource not available)? inside proc how to get the info -- how to restart everything.
+
+
+
+
