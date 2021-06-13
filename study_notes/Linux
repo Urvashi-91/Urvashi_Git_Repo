@@ -198,6 +198,18 @@ Scenario 29.2: What happends after tcp handshake/ at SSL/TLS level? How self sig
 Scenario 29.3: What does too many open files error mean? How does lsof work? Where is the limit mentioned? How do you see anything in /proc?
 Scenario 20: Design a migration from On prem to Docker containers on Kubernetes cluster
 Scenario : SSH not working so you login to console (ilo) mysql-admin:# prompt what does this mean? How do you troubleshoot if none of the commands working (FORK: resource not available)? inside proc how to get the info -- how to restart everything.
+Scenario : Blackbox and whitebox monitoring? SLA,SLO,SLI
+Scenario: Transfer huge number of files from one server to another?
+Git error: conflict , troubleshoot
+Git commit needs to be reverted, how?
+Jenkins logs how to check those? how to automatically fix build and error without manual intervention?
+Website not responding, troubleshoot...strace
+multiprocessing vs mltithreading
+how to multiprocessing usingchunks which is variant
+how to parse a json file
+array and dictionary
+synchronous and asynchronous
+how to migrate to aws what all steps to consider and security to make sure for a private servers?
 
 
 
