@@ -210,6 +210,8 @@ how to parse a json file
 array and dictionary
 synchronous and asynchronous
 how to migrate to aws what all steps to consider and security to make sure for a private servers?
+how to set an interfac's MTU. (ifconfig ip-link)
+
 
 
 
