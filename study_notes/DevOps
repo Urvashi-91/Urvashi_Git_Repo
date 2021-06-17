@@ -1,0 +1,26 @@
+1. Terraform modules and how to use them
+ 2. Debugging nginx issues
+  Make sure your NGINX is configured with the --with-debug configuration option. ...
+  Open NGINX configuration file: ...
+  Find the error_log directive which is by default located in the main context, and change the logging level to debug . ...
+  Save the configuration and exit the configuration file.
+ 3. Preventing ddos
+ 4. What is the route for network traffic when one tries to connect to any site like fb
+ 5. What is average load in linux
+ 6. Use of inodes and file descriptors
+ 7. Use of swap space in linux
+ 8. What does load balancer do in AWS when an instance stops
+ 9. How to debug a website that is slowing down
+ 10. Difference between a list and a tuple in Python
+ What is the typical life cycle of an object in JVM heap? How would you combine a CI/CD process with Chef config management system? How would you improve it if you need to push releases after every commit to repository?
+ What kind of hypervisors you know ?
+ creating and consuming RESTful APIs
+ The Pragmatic Programmer: From Journeyman to Master by Andrew Hunt and David Thomas
+Time Management for System Administrators by Thomas Limoncelli
+Continuous Integration: Improving Software Quality and Reducing Risk by Paul Duvall
+Additionally, I would also recommend the following:
+
+The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win by Gene Kim
+(well known in the DevOps field), Kevin Behr, and George Spafford
+Rework by Jason Fried
+7 Habits of Highly Effective People by Stephen R. Covey
