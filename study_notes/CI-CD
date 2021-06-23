@@ -17,3 +17,17 @@ Some of the significant metrics while calculating the automated testing ROI are 
       3. Cost analysis. For instance, software and hardware costs and the cost for defects prioritized by severity and operational costs.
       4. Resource analysis. Like the requirement of new resources, cost of their training, billing, etc.
       
+      
+Pipeline in three folds:
+  1. Build: Bug fixes, New features, Test and Production Code
+    1.a: Bug fixes are submitted to the mainline and then cherry picked into the branch for inclusion in the release.
+  2. Test: Unit tests + Best practice test + Syntax checks + Web based automation testing (Selenium) + QA + User testing + Stress/Load testing
+  3. Deploy
+  4. CI Method (Code Merged + Test Performed): 1. deploy the code directly from the source control repository
+                2. turn the code into an artifact/binary.
+  
+  5. C Delivery (Code Release): Code + All Unit Tests + Integrate + Build + Story Test + Deploy To Production
+  
+  6. C Deployment (Production): Once an organization has built and delivered the code to test environments and tested it thoroughly, it’s time to deploy to production where continuous deployment falls. The next phase is getting the build artifacts to production. Via continuous integration and continuous delivery, this step is still manual. 
+  
+      
