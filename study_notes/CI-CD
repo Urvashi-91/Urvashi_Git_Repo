@@ -31,3 +31,7 @@ Pipeline in three folds:
   6. C Deployment (Production): Once an organization has built and delivered the code to test environments and tested it thoroughly, it’s time to deploy to production where continuous deployment falls. The next phase is getting the build artifacts to production. Via continuous integration and continuous delivery, this step is still manual. 
   
       
+      
+Challenges:
+  1. Bugs in Code, Automated Build Release was not understood well by the team. --> Aligned dedicated member to focus on testing stages of every build and device a general process.
+  2. Lack of ownership: Bug fixes at each stage to dedicated group of members.
