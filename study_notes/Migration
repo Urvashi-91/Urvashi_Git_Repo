@@ -1,0 +1,31 @@
+Migration Phases:
+
+Phase 1: Identify Business goals: Migrating to scale up, reduce cost, improve reliability?
+Phase 2: Identify Migration Strategy: Server Migration Service, DB Migration Service, Amazon DirectConnect
+Phase 3: Plan Proof Of Concept for a test apps, approvals from Stakeholders and final migration full plan.
+Phase 4: Operate apps on AWS and turn off on-premise setup
+
+Migration Strategies:
+
+Strategy 1: Re-host ("Lift and Shift")
+Strategy 2: Re-platform ("Lift, tinker and shift")
+  - Made changes to some platforms like replacing self-hosted databases to Amazon RDS
+  
+  
+
+Migration Challenges:
+
+Compute Resiliency: Cloud machine instances dont live forever
+  Solution: 1. Opt for Reserved instances
+            2. for deployment and availability use Elastic Beanstalk
+            3. Active/Standby IPSec tunnels and Amazon DirectConnect to make VPC and your Enterprise network connect.
+New Logging and Monitoring Strategy required
+  Solution 1. Centralised logging: Use Cloud Watch, Lambda and Cognito
+  
+Cost Management: Cost was dynamic
+  Solution: 1. Used AWS calculator for cost estimate and leveraged KPIs to filter out some components.
+  
+Security: Apps move from on-premise to cloud hence exposed
+  Solution: 1. IAM and KMS to ensure security
+  
+Source: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/migrate-an-on-premises-linux-server-to-an-amazon-ec2-linux-instance-using-aws-sms.html
