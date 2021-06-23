@@ -1,11 +1,13 @@
-1. Terraform modules and how to use them
+
  2. Debugging nginx issues
   Make sure your NGINX is configured with the --with-debug configuration option. ...
   Open NGINX configuration file: ...
   Find the error_log directive which is by default located in the main context, and change the logging level to debug . ...
   Save the configuration and exit the configuration file.
  3. Preventing ddos
+  -- Load Balancer, WAF, CDN, ACL, firewalls, 
  4. What is the route for network traffic when one tries to connect to any site like fb
+  
  5. What is average load in linux
  6. Use of inodes and file descriptors
  7. Use of swap space in linux
