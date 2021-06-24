@@ -213,6 +213,11 @@ how to migrate to aws what all steps to consider and security to make sure for a
 how to set an interfac's MTU. (ifconfig ip-link)
 
 
+echo "- - -" > /sys/class/scsi_host/host0/scan
+            The three values stand for channel, SCSI target ID, and LUN. The dashes act as wildcards meaning "rescan everything"
+/nfsroot 192.168.5.0/24(ro,no_root_squash,no_subtree_check) 
+
+
 
 
 
