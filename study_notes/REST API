@@ -1,0 +1,63 @@
+"Representational State Transfer" set of rules that define how an API should look like.
+URL = Request + Response
+  - Endpoint: Is the route or URL you requested for . eg: https://github.com
+    - Path: URI is the path. Users are specified :username. 
+    - Query parameters: Modify your request in a Key = Value format
+                        ?query1=value1&query2=value2 || '?' is for query and '&' is for separating two key-value pairs
+                        Paramters: type, sort, direction
+                        sort=pushed | to get repos that was recently pushed
+                        
+  - Method: Is the type of request being sent (CRUD. Creat Read Update Delete)
+    - GET: Performs READ operation
+    - PUT: Performs UPDATE operation
+    - POST: Performs CREATE operation
+    - DELETE: Performs DELETE operation
+    - PATCH: Performs UPDATE operation
+    
+  - Headers: Authentication + body content + several information
+  - Data: Message to be sent used by Methods (PUT, POST..)
+  
+Send requests with Python Requests: 
+  REFERENCE: https://docs.python-requests.org/en/master/
+  >>> r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
+  >>> r.status_code
+    200
+  >>> r.headers['content-type']
+    'application/json; charset=utf8'
+  >>> r.encoding
+    'utf-8'
+  >>> r.text
+    '{"type":"User"...'
+  >>> r.json()
+   {'private_gists': 419, 'total_private_repos': 77, ...}
+   
+   
+Testing Endpoints with CURL:
+  - curl --version
+  - Use '\' before any special charcaters like curl https://api.github.com/users/zellwk/repos\?sort\=pushed
+  - curl -X POST https://api.github.com/user/repos (-x for request method)
+  - curl --request POST https://api.github.com/user/repos
+  - curl -H "Content-Type: application/json" https://api.github.com (-H for headers)
+  - curl -X POST <URL> -d property1=value1 -d property2=value2 (-d to sent data)
+  - curl -x POST -u "username:password" https://api.github.com/user/repos
+
+
+
+
+Send and Receive requests through REST API:
+ - {
+  "property1": "value1",
+  "property2": "value2",
+  "property3": "value3"
+}
+ - 
+ 
+ Authentication:
+  - username and password: specifed with -u option
+  - secret token: oAUTH that lets authentication through social media like facebook
+  - HTTP status code debug: You can debug the status of a response with the verbose option (-v or --verbose) or the head option (-I or --head).
+  
+ 
+API Version:
+ - Directly in the dn point || https://api.twitter.com/1.1/account/settings.json
+ - In a request header || curl https://api.github.com -H Accept:application/vnd.github.v3+json
