@@ -15,6 +15,7 @@ URL = Request + Response
     - PATCH: Performs UPDATE operation
     
   - Headers: Authentication + body content + several information
+    - REFERENCE: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
   - Data: Message to be sent used by Methods (PUT, POST..)
   
 Send requests with Python Requests: 
@@ -40,8 +41,6 @@ Testing Endpoints with CURL:
   - curl -H "Content-Type: application/json" https://api.github.com (-H for headers)
   - curl -X POST <URL> -d property1=value1 -d property2=value2 (-d to sent data)
   - curl -x POST -u "username:password" https://api.github.com/user/repos
-
-
 
 
 Send and Receive requests through REST API:
