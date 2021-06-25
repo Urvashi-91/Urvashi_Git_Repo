@@ -100,3 +100,19 @@ A 22: Active: FTP client to FTP server (Port 21), FTP server to FTP Client (port
       
 Q 23: ARP table and MAC Table
 A 23: ARP: IP-MAC (network level), MAC: AMC-interface (switch level)
+
+Q 24: what is the size of a typical IP header?
+A 25: The minimum length of an IP header is 20 bytes, or five 32-bit increments. The maximum length of an IP header is 24 bytes, or six 32-bit increments. Therefore, the header length field should contain either 5 or 6.
+
+Q 26: what is NAT? sNAT, pNAT?
+A 26: SNAT changes the private IP address of the source host to public IP address. It may also change the source port in the TCP/UDP headers. SNAT is typically used by internal users to access the Internet. Destination NAT changes the destination address in IP header of a packet.
+
+
+Q 27: which one is more secure SSL or VPN (tricky questions as they are not mutually related)
+A 27: A VPN secures all online communications coming from your device, while HTTPS only provides encryption between the website and your browser. HTTPS is vulnerable to certain attacks (like root certificate attacks) that a VPN can sometimes help protect it from.
+The main difference between IPsec and SSL VPNs is the endpoints for each protocol. While an IPsec VPN allows users to connect remotely to an entire network and all its applications, SSL VPNs give users remote tunneling access to a specific system or application on the network.
+
+
+Q 28: what is the difference between an HIDS and a NIDS? (security)(intrusion detection system)
+A 28: HIDs examine specific host-based actions, such as what applications are being used, what files are being accessed and what information resides in the kernel logs. NIDs analyze the flow of information between computers, i.e., network traffic. They essentially "sniff" the network for suspicious behavior.
+
