@@ -217,7 +217,36 @@ echo "- - -" > /sys/class/scsi_host/host0/scan
             The three values stand for channel, SCSI target ID, and LUN. The dashes act as wildcards meaning "rescan everything"
 /nfsroot 192.168.5.0/24(ro,no_root_squash,no_subtree_check) 
 
+Scenario: read vs fread: 
+Solution: the fread() function is used to read data from a file and store it in a buffer
 
+Scenario: Process Address Space
+Solution: The process address space is the set of logical addresses that a process references in its code. For example, when 32-bit addressing is in use, addresses can range from 0 to 0x7fffffff; that is, 2^31 possible numbers, for a total theoretical size of 2 gigabytes.
+
+Scenario: Race Condition:
+Soltuion: A race condition is an undesirable situation that occurs when a device or system attempts to perform two or more operations at the same time, but because of the nature of the device or system, the operations must be done in the proper sequence to be done correctly.
+
+Scenario: Deadlock
+Solution: Deadlock is a situation that occurs in OS when any process enters a waiting state because another waiting process is holding the demanded resource. Deadlock is a common problem in multi-processing where several processes share a specific type of mutually exclusive resource known as a soft lock or software.
+
+Scenario: Big-endian and Little-endian (storing multibyte data-types)
+Solution: Big-endian is an order in which the "big end" (most significant value in the sequence) is stored first (at the lowest storage address). Little-endian is an order in which the "little end" (least significant value in the sequence) is stored first.
+
+Scenario: Mutex vs Semaphores
+Solution: mutexes and semaphores are kernel resources that provide synchronization services
+          Mutex: (locking) provides mutual exclusion, either producer or consumer can have the key (mutex) and proceed with their work. As long as the buffer is filled by the producer, the consumer needs to wait, and vice versa. 
+          Sempahore: (signalling) A semaphore is a generalized mutex. In lieu of a single buffer, we can split the 4 KB buffer into four 1 KB buffers (identical resources). A semaphore can be associated with these four buffers. The consumer and producer can work on different buffers at the same time.
+
+Scenario: Debug process
+Soltuion:   Set a breakpoint and start the debugger.
+            Navigate code in the debugger using step commands.
+            Step over code to skip functions.
+            Step into a property.
+            Run to a point in your code quickly using the mouse.
+            Advance the debugger out of the current function.
+            Run to cursor.
+            Restart your app quickly.
+            
 
 
 
