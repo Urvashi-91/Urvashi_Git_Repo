@@ -86,3 +86,17 @@ A 16: HTTPS interaction over TLS. Happens after TCP connection
 
 Q 20: STP Spanning Tree Protocol
 A 20: The Spanning Tree Protocol (STP) is a network protocol that builds a loop-free logical topology for Ethernet networks. The basic function of STP is to prevent bridge loops and the broadcast radiation that results from them. ... RSTP was designed to be backwards-compatible with standard STP.
+
+Q 21: Firewall and Stateful Firewall?
+A 21: A firewall is a network security device that monitors incoming and outgoing network traffic and permits or blocks data packets based on a set of security rules.
+      S/w or H/w firewalls Packet filtering firewall (Stateful and Stateless)
+          Stateless firewalls examine packets independently of one another and lack context, making them easy targets for hackers.
+          stateful firewalls remember information about previously passed packets and are considered much more secure.
+      Proxy, NAT, Stateful multilayer inspection firewalls
+      
+Q 22: Active Mode FTP and Passive Mode FTP
+A 22: Active: FTP client to FTP server (Port 21), FTP server to FTP Client (port 20)
+      Passive: FTP Client connects both POrt 21,20 on the server and issues PASV command.
+      
+Q 23: ARP table and MAC Table
+A 23: ARP: IP-MAC (network level), MAC: AMC-interface (switch level)
