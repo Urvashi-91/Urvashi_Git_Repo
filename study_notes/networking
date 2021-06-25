@@ -11,3 +11,36 @@ A 2: DNS uses both TCP and UDP for valid reasons described below. UDP messages a
      and queries either regular (primary) or reverse. UDP can be used to exchange small information whereas TCP must be used to exchange information larger than 512 bytes. If a client doesn't get response 
      from DNS, it must retransmit the data using TCP after 3-5 seconds of interval. Consistency is maintained using TCP.DNS uses TCP for Zone transfer and UDP for name, and queries either regular (primary) or reverse. 
        UDP can be used to exchange small information whereas TCP must be used to exchange information larger than 512 bytes.
+       
+Q 3: Port Range?
+A 3: 0-65535 (0 is reserved for TCP, to accept connections on from clients. Some systems may require superuser privileges if the port is < 1024.)
+
+Q 4: TCP Headers
+A 4: Source/Dest Port | Seq No. | ACK No. | Data Offset (header size in multiples of 4)| Reserved (connection and data)| Flags (SYN,ACK, FIN,RST, PSH, URG, | Window (to specify sender whow much data receiver can accept)| Checksum | urgent Pointer (urgent data)| Options (MSS-Max Segment Size, Window Scaling, Selective ACK, TS, Nop)| Padding (0's that ensure TCPHeader ends and data begins on a 32 bit boundary)
+     MTU: IPHeader + TCP Header + DATA(MMU)
+     MMU: DATA
+     TS: Timestamp after which re-attempt to send a packet happens
+     PSH: All data sent, URG: Only urgent data deliver
+     
+Q 5: IP Header
+A 5: Version | HEader LEngth | Type of Service | Total Length | Identification (identify fragments of an IP datagram) | IP Flags (Bit 0-reserved, Bit 1-donot fragment, Bit 2-more fragments), Fragment Offset, TTL, Protocol, Header Checksum, Src/Dest Address, IP Options, Data)
+
+Q 6: IPSEC Tunnel
+A 6: support secure communication as packets of information are transported from an IP address across network boundaries and vice versa.
+     VPN connections (Virtual Private Connection) - Intra, Extranet, Remote VPNs
+     
+Q 7: OSPF (App Layer)
+A 7: Open Shortest Path First (OSPF) is a routing protocol for Internet Protocol (IP) networks. It uses a link state routing (LSR) algorithm and falls into the group of interior gateway protocols (IGPs), operating within a single autonomous system (AS). ... OSPF is a widely used IGP in large enterprise networks.
+     OSPF is a routing protocol. Two routers speaking OSPF to each other exchange information about the routes they know about and the cost for them to get there. ... OSPF routers rely on cost to compute the shortest path through the network between themselves and a remote router or network destination.
+
+Q 8: BGP (App Layer)
+A 8: Border Gateway Protocol (BGP) is the postal service of the Internet. When someone drops a letter into a mailbox, the postal service processes that piece of mail and chooses a fast, efficient route to deliver that letter to its recipient. Similarly, when someone submits data across the Internet, BGP is responsible for looking at all of the available paths that data could travel and picking the best route, which usually means hopping between autonomous systems.
+     BGP allows different autonomous systems on the Internet to share routing information. The gateways of autonomous systems are called Autonomous System Boundary Routers (ASBR). ... BGP allows each peer to collect routing information from its neighboring peer and later advertise that information, in its entirety, further.
+     
+Q 9: PKI
+A 9: Public Key Infrastructure (PKI) is a system of processes, technologies, and policies that allows you to encrypt and sign data. You can issue digital certificates that authenticate the identity of users, devices, or services.
+      works by using two different cryptographic keys: a public key and a private key. ... By using a two-key encryption system, PKI secures sensitive electronic information as it is passed back and forth between two parties, and provides each party with a key to encrypt and decrypt the digital data.
+      An SSL certificate resides on a secure server and is used to encrypt the data that identifies the server. ... PKI uses a cryptographic key pair that it gets and shares through a trusted authority called a Certificate Authority (CA).
+      
+Q 10: A man-in-the-middle attack is a type of eavesdropping attack, where attackers interrupt an existing conversation or data transfer. After inserting themselves in the "middle" of the transfer, the attackers pretend to be both legitimate participants.
+
