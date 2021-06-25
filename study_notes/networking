@@ -25,9 +25,14 @@ A 4: Source/Dest Port | Seq No. | ACK No. | Data Offset (header size in multiple
 Q 5: IP Header
 A 5: Version | HEader LEngth | Type of Service | Total Length | Identification (identify fragments of an IP datagram) | IP Flags (Bit 0-reserved, Bit 1-donot fragment, Bit 2-more fragments), Fragment Offset, TTL, Protocol, Header Checksum, Src/Dest Address, IP Options, Data)
 
-Q 6: IPSEC Tunnel
+Q 6: IPSEC Tunnel and Phases?
 A 6: support secure communication as packets of information are transported from an IP address across network boundaries and vice versa.
      VPN connections (Virtual Private Connection) - Intra, Extranet, Remote VPNs
+     IPSec has three distinct phases:
+          In the first phase, initial authentication takes place. Both end points confirm who they are. This process can be done by LDAP, PKI or by exchange of a shared secret, which is a hash of a pre-programmed password. When a shared secret is used, IKE (Internet Key Exchange) handles the negotiation using UDP/500.
+          In phase Two, the parameters of the VPN are negotiated. The two end points negotiate things like encryption types, security services (ESP or AH or combination) and how often encryption keys are created. 
+*ESP uses protocol 50 and AH uses protocol 51.
+          In phase Three the VPN is initialized and data is transferred securely. 
      
 Q 7: OSPF (App Layer)
 A 7: Open Shortest Path First (OSPF) is a routing protocol for Internet Protocol (IP) networks. It uses a link state routing (LSR) algorithm and falls into the group of interior gateway protocols (IGPs), operating within a single autonomous system (AS). ... OSPF is a widely used IGP in large enterprise networks.
@@ -42,5 +47,42 @@ A 9: Public Key Infrastructure (PKI) is a system of processes, technologies, and
       works by using two different cryptographic keys: a public key and a private key. ... By using a two-key encryption system, PKI secures sensitive electronic information as it is passed back and forth between two parties, and provides each party with a key to encrypt and decrypt the digital data.
       An SSL certificate resides on a secure server and is used to encrypt the data that identifies the server. ... PKI uses a cryptographic key pair that it gets and shares through a trusted authority called a Certificate Authority (CA).
       
-Q 10: A man-in-the-middle attack is a type of eavesdropping attack, where attackers interrupt an existing conversation or data transfer. After inserting themselves in the "middle" of the transfer, the attackers pretend to be both legitimate participants.
+Q 10: MITM
+A 10: A man-in-the-middle attack is a type of eavesdropping attack, where attackers interrupt an existing conversation or data transfer. After inserting themselves in the "middle" of the transfer, the attackers pretend to be both legitimate participants.
 
+Q 11: Can DHCP work on Layer 2?
+A 11: Layer 2/3 and Layer 7, An interface on a Palo Alto Networks firewall can perform the role of a DHCP server, client, or relay agent. The interface of a DHCP server or relay agent must be a Layer 3 Ethernet, Aggregated Ethernet, or Layer 3 VLAN interface.
+
+Q 12: Ping
+A 12: Ping uses ICMP to identify Echo-request(Query) and Round Trip Time (Timestamp)
+
+Q 13: DoS vs DDoS?
+A 13: A DoS attack is a denial of service attack where a computer is used to flood a server with TCP and UDP packets. A DDoS attack is where multiple systems target a single system with a DoS attack. The targeted network is then bombarded with packets from multiple locations.
+
+Q 14: Fragmentation?
+A 14: IP fragmentation is an Internet Protocol (IP) process that breaks packets into smaller pieces (fragments), so that the resulting pieces can pass through a link with a smaller maximum transmission unit (MTU) than the original packet size. The fragments are reassembled by the receiving host.
+
+Q 15: Traceroute?
+A 15: “traceroute works by setting the time-to-live field (TTL, actually “hop count to live”) of an outbound packet to an artificially low number. As packets arrive at a gateway, their TTL is decreased. When a gateway decreases the TTL to 0, it discards the packet and sends an ICMP “time exceeded” message back to the originating host.”
+      “The first gateway to see such a packet (lab-gw in this case) determines that the TTL has been exceeded and notifies jaguar of the dropped packet by sending back an ICMP message. The sender’s IP address in the header of the error packet identifies the gateway, and traceroute looks up this address in DNS to find the gateway’s hostname.”
+      Firewall Allow: “UDP ports 33434–33534 as well as ICMP ECHO (type 8) packets.”
+
+Q 16: TLS Handshake (https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/)
+A 16: HTTPS interaction over TLS. Happens after TCP connection
+          - Specify version of TLS to ube used
+          - Decide cipher suites to use
+          - Identify identity via server's public key and the SSL certificate authority's digital signature
+          - Generate session keys in order to use symmetric encryption after the handshake is complete.
+ Q 17: PDU?
+ A 17: A PDU is composed of protocol-specific control information and user data. In the layered architectures of communication protocol stacks, each layer implements protocols tailored to the specific type or mode of data exchange.
+ 
+ Q 18: What is the source IP of an end user node requesting a DHCP packet?
+ A 18: The Source address is the DHCP server IP address, and the Destination address is still 255.255. 255.255. The YIADDR field contains the client's address, and the CHADDR and DHCP: Client Identifier fields are the physical address of the network card in the requesting client.
+ 
+ Q 19: ARP vs Gratuitous ARP?
+ A 19: A Gratuitous ARP is an ARP Response that was not prompted by an ARP Request. The Gratuitous ARP is sent as a broadcast, as a way for a node to announce or update its IP to MAC mapping to the entire network.
+          Gratuitous Address Resolution Protocol (ARP) requests help detect duplicate IP addresses. A gratuitous ARP is a broadcast request for a router's own IP address.
+       ARP table: Ip-MAC (Layer 2/3) -- netstat -r -n(avoid DNS) or ip route show
+
+Q 20: STP Spanning Tree Protocol
+A 20: The Spanning Tree Protocol (STP) is a network protocol that builds a loop-free logical topology for Ethernet networks. The basic function of STP is to prevent bridge loops and the broadcast radiation that results from them. ... RSTP was designed to be backwards-compatible with standard STP.
