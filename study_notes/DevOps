@@ -1,27 +1,36 @@
-
- 2. Debugging nginx issues
+Q 1. Debugging nginx issues
   Make sure your NGINX is configured with the --with-debug configuration option. ...
   Open NGINX configuration file: ...
   Find the error_log directive which is by default located in the main context, and change the logging level to debug . ...
   Save the configuration and exit the configuration file.
- 3. Preventing ddos
-  -- Load Balancer, WAF, CDN, ACL, firewalls, 
- 4. What is the route for network traffic when one tries to connect to any site like fb
   
- 5. What is average load in linux
- 6. Use of inodes and file descriptors
- 7. Use of swap space in linux
- 8. What does load balancer do in AWS when an instance stops
- 9. How to debug a website that is slowing down
- 10. Difference between a list and a tuple in Python
- What is the typical life cycle of an object in JVM heap? How would you combine a CI/CD process with Chef config management system? How would you improve it if you need to push releases after every commit to repository?
- What kind of hypervisors you know ?
- creating and consuming RESTful APIs
- The Pragmatic Programmer: From Journeyman to Master by Andrew Hunt and David Thomas
+Q 2. Preventing ddos
+  -- Load Balancer, WAF, CDN, ACL, firewalls, 
+ 
+Q 3. What does load balancer do in AWS when an instance stops
+  -- Checks hearthbeat and removes down nodes
+  
+Q 4. What is the typical life cycle of an object in JVM heap? How would you combine a CI/CD process with Chef config management system? How would you improve it if you need to push releases after every commit to repository?
+
+ 
+Q 6. creating and consuming RESTful APIs
+
+Q 7: You have a Jenkins process that is running but the Jenkins User Interface is not up. Troubleshoot why? (dump)
+: Jenkins UI port is not open to be accessed from outside | curl is not working firewall | analyse tcpdump
+
+Q 8: You have to clone Git file which is huge in size and in USA, and you have to clone it in India. But the clone is getting timed out? Troubleshoot
+: git logs, git partial clone, git shallow clone...make use of CDN
+
+Q 9: How would you monitor 1000 servers and generate reports based on the specified metrics?
+: Monitoring Grafana GUI - Prometheus agent deploy on new server, bootstrap expose metrics -- then configure dashboard - CPU,mem,n/w,ports
+
+Q 10: You are growing your enviroment and you need to migrate a baremetal based application on kubesystem. The application is running on Ubuntu12 and using old Python version. How would you plan the migration?
+: POD= application has dependency based on container dockerfile-image will be same as app and code location (From, command to run and how will my application start) | Container layers(readable/writable) data through persistence storage (NAS/expose to kubernetes cluster)
+
+ 
+The Pragmatic Programmer: From Journeyman to Master by Andrew Hunt and David Thomas
 Time Management for System Administrators by Thomas Limoncelli
 Continuous Integration: Improving Software Quality and Reducing Risk by Paul Duvall
-Additionally, I would also recommend the following:
-
 The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win by Gene Kim
 (well known in the DevOps field), Kevin Behr, and George Spafford
 Rework by Jason Fried
