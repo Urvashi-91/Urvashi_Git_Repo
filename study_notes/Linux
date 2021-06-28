@@ -76,7 +76,6 @@ Solution 9: The 0 file descriptor identifies the standard input, 1 identifies th
             Open: read, write, lseek and close, Link, Unlink, stat, lstat, fstat
             Src: https://profile.iiita.ac.in/bibhas.ghoshal/lab_files/System%20calls%20for%20files%20and%20directories%20in%20Linux.html
             
-
 Scenario 10: What happens when you hit curl in linux?
 Solution 10: bash searches for executable "curl" in directories from PATH env var, once found it forks a process passing in the arg "www.google.com". 
             After that, a call to the kernel is made to handle requests to the network. The network stack is used (TCP/IP) to arbitrate for access to the resources, 
@@ -146,28 +145,15 @@ Solution 13: Superblock: file system metadata and defines the file system type, 
              Inode:represents metadata about a file.information about ownership (user, group), access mode (read, write, execute permissions), file type, and the data blocks with the file's content.
              Dentry: glue that holds inodes and files together by relating inode numbers to file names. Dentries also play a role in directory caching which, ideally, keeps the most frequently used files on-hand for faster access. 
                      File system traversal is another aspect of the dentry as it maintains a relationship between directories and their files.
+
 Scenario 14: The lifecycle and the state of processes.
-Solution 14: 
+Solution 14: New--> Ready --> Running --> Waiting --> terminated --> Uninterruptible --> Zombie
+
 Scenario 15: You are given disks with empty spaces, yet cannot write anything on the disks? What could be the reason?
-Scenario 16: Draw an architecture where a service is up most of the time
-SCENARIO 17: WHAT IS THE PURPOSE OF WITH STATEMENT IN PYTHON
-Scenario 18: How would you design a Build and Release system for IOT devices or sensors?
-Scenarios 19: How would you handle data from IOT or sensors devices? --> Stream data processing
+Solution 15: Large file open OR lsof DELTED OR df -i
 
 Scenario 20: You have a service Gerrit that is being restarted every 5 mins by systemd? troubleshoot (journalctl)
-Solution 20: 1. Look for logs --> journalctl for logs (-u servicename, -t timestamp) / systemctl show logs (state of process) 2. Service setting could be set to restart
-
-Scenario 21: You have a Jenkins process that is running but the Jenkins User Interface is not up. Troubleshoot why? (dump)
-Solution 21: Jenkins UI port is not open to be accessed from outside | curl is not working firewall | 
-
-Scenario 22: You have to clone Git file which is huge in size and in USA, and you have to clone it in India. But the clone is getting timed out? Troubleshoot
-Solution 22: git logs
-
-Scenraio 23: How would you monitor 1000 servers and generate reports based on the specified metrics?
-Solution 23: Monitoring Grafana GUI - Prometheus agent deploy on new server, bootstrap expose metrics -- then configure dashboard - CPU,mem,n/w,ports
-
-Scenario 24: You are growing your enviroment and you need to migrate a baremetal based application on kubesystem. The application is running on Ubuntu12 and using old Python version. How would you plan the migration?
-Solution 24: POD= application has dependency based on container dockerfile-image will be same as app and code location (From, command to run and how will my application start) | Container layers(readable/writable) data through persistence storage (NAS/expose to kubernetes cluster)
+Solution 20: 1. Look for logs --> journalctl for logs (-u servicename, -t timestamp) / systemctl show logs (state of process) 2. Service setting could be set to restart via cronjob
 
 Scenario 25: What is context switching:
 Solution 25: Context Switching involves storing the context or state of a process so that it can be reloaded when required and execution can be resumed from the same point as earlier. 
@@ -179,9 +165,21 @@ Solution 25: Context Switching involves storing the context or state of a proces
            
 Scenario 26: Boot Process - Linux
 Solution 26: 1. BIOS - Searches hard drives, USB, CD-ROMs, network cards, or any other hardware it can boot from.
+                     - looks for actual firmware code at 000FFF0 (contains JMP instructions to actual BIOS code)
+                     - Two Tasks:
+                        - POST (Power On Selt Test): Identifies connected devices
+                        - Boot: Calls INT 19h to start the boot process.
+                                work loading its first sector to Master Boot Record (boot code(446 + partition)= 512 bytes
+    
+                     
              2. MBR: Master Boot Record, 512 bytes of HD this si where the boot code is.
-             3. 
- Scenario 27: How to enrypt Passwords?
+             3. Boot Loader (GRUB 2)
+
+Scenario : x86 Computers Operational Mode?
+Solution : Real Mode: Access to first MB of memory only, 1st stage of boot process.
+           Protected Mode: Multitasking, paging, protection rings.
+
+Scenario 27: How to enrypt Passwords?
  Solution 27: 
  
  Scenario 28: Stateful set is for order of an application to start them in order
@@ -248,5 +246,12 @@ Soltuion:   Set a breakpoint and start the debugger.
             Restart your app quickly.
             
 
-
+4. What is the route for network traffic when one tries to connect to any site like fb
+  
+ 5. What is average load in linux
+ 6. Use of inodes and file descriptors
+ 7. Use of swap space in linux
+ Q 4. How to debug a website that is slowing down
+  -- 
+  Q 5. What kind of hypervisors you know ?
 
