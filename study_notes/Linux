@@ -322,6 +322,8 @@ Soltuion:   Set a breakpoint and start the debugger.
             Run to cursor.
             Restart your app quickly.
             
+Scenario: Troubleshoot system unresponsive, ssh is not working.
+            
 
 4. What is the route for network traffic when one tries to connect to any site like fb
   
