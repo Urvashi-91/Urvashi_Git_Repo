@@ -198,6 +198,83 @@ Scenario 20: Design a migration from On prem to Docker containers on Kubernetes 
 Scenario : SSH not working so you login to console (ilo) mysql-admin:# prompt what does this mean? How do you troubleshoot if none of the commands working (FORK: resource not available)? inside proc how to get the info -- how to restart everything.
 Scenario : Blackbox and whitebox monitoring? SLA,SLO,SLI
 Scenario: Transfer huge number of files from one server to another?
+Scenario: chroot
+Solution: Extra security to run server in a chrooted enviroment (Jailed environment)- encapsulated filesystem that is prevented from interacting with your regular filesystem. 
+            #named -t: specifies directory to chroot to
+            #named -u: specifies uid under which run chrooted server
+            “chroot jail cannot be empty since it must contain all the files the name server normally needs to run: /dev/null, /dev/random, the zone files, 
+            configuration files, keys, syslog target files, UNIX domain socket for syslog, /var, etc. It takes a bit of work to set all this up. 
+            The chroot system call is performed after libraries have been loaded, so you need not copy shared libraries into the jail.”
+             The captive system shares your existing kernel.
+            Used for : deprecated environemtn, recovery use chroot to mount the damaged filesystem to a mount point on a Live CD.
+            Configure: Create libraries directories, ldd to list dependecies and install 
+            reference: https://www.howtogeek.com/441534/how-to-use-the-chroot-command-on-linux/
+            
+Scenario: symlink vs hardlinnk
+Solution: Hardlink: Points to the inode of the original file, hence changing/deleting the file will not change unless inode value is changed. Works in the same device.
+          Softlink: Points to the name in the same location, hence any change to name or location will break the symbolic link. Works across device.
+          Reference Counts: System open-file table entries, vnode table entries, and filesystem entries (inodes actually) each contain a counter (called a reference count) that tracks the number of references to that object. 
+                            Each time one of the referencing objects goes away or changes to refer to something else, that counter gets dcecremented. When it hits zero, the object itself can be deleted. 
+                            Reference counting is an important idea and is found in lots of places in CS.
+                            
+Scenario: inode vs file descriptors
+Solution: inode: fil/dir attributes such as metadata and physical location on hardrive. The inode for a file contains the locations of each of the data blocks comprising the file
+                 - DIRECTORY blocks: inode-filename pairs - entries like current or parent directory.
+          file descriptors: the OS and the user process refer to each open connection by a number (type int) called a file descriptor. Standard input, output and error default to file descriptors 1, 2 and 3 respectively.
+          
+Scenario: How to send a signal to a process?
+Solution: Send signal to a process using Kill -s USR1 pid
+          Send signal using a C program with attributes = pid, SIGHUP
+          Send signal from a keyboard (SIGINT CTR+ C that sends signal to kill foreground process (fg)) or (SIGQUIT CTRL + / or CTR + Y)
+          View Key mappings with #stty -a | grep intr
+  
+Scenarios: How do you stop a fork bomb, when you are already in the system?
+Solution: :(){ :|:& };:`. -- is FORK bomb
+            :() - Define the function. The : is the function name and the opening and closing parenthesis means that the function does not accept any arguments
+            { } - These characters show the beginning and end of the function
+            :|: - Here it loads a copy of the function : into memory and pipe its own output to another copy of the : function, which has to be loaded into memory as well
+            & - This starts the process as a background process
+            : - The final : executes the function and hence the chain reaction begins
+            
+            If out of the system: Limit user access via PAM
+            If inside the system: killall -STOP -u username
+            
+Scenario: Recover deleted log file?
+Solution: /proc/pid/fd --> frep for Deleted and copy them in the logs file location
+
+Scenario: * How look shared library dependencies?
+Solution: ldd list dependeciens
+
+Scenario: * How print the strings of printable characters in files?
+Solution: using #strings
+
+Scenario: What is nscd?
+Solution: Nscd is a daemon that provides a cache for the most common name service requests. 
+            The default configuration file, /etc/nscd. conf, determines the behavior of the cache daemon.
+
+Scenario: What is automake?
+Solution: So Automake was a new compiler that integrated with autoconf and processed "source" Makefile's (named Makefile.am) into Makefiles that could then be fed to Autoconf. 
+            The automake/autoconf toolchain actually uses a number of other helper tools and they are augmented by other components for other specific tasks
+
+Scenario: ELF?
+Solution: n computing, the Executable and Linkable Format (ELF, formerly named Extensible Linking Format), is a common standard file format for executable files, object code, shared libraries, and core dumps. ... 
+            By design, the ELF format is flexible, extensible, and cross-platform.
+            #readelf or #objdump
+            
+Scenario: Major Minor numbers in file
+Soltuion: The major device number is used to index the array when calling the code for a particular device driver. 
+            The minor device number is passed to the device driver as an argument. 
+            The minor number has no significance other than that attributed to it by the driver.
+            
+Scenario: &> and >/dev/null 2>&1 Two ways to redirect std error and std o/p to /dev/null
+Solution: 2>&1 redirects standard error to standard output. &1 indicates file descriptor (standard output), 
+            otherwise (if you use just 1 ) you will redirect standard error to a file named 1 . 
+            [any command] >>/dev/null 2>&1 redirects all standard error to standard output, and writes all of that to /dev/null 
+            
+Scenario: chmod -x /bin/chmod
+Solution: perl -e 'chmod(0755, "chmod")' systemcall
+
+ 
 Git error: conflict , troubleshoot
 Git commit needs to be reverted, how?
 Jenkins logs how to check those? how to automatically fix build and error without manual intervention?
