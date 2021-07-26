@@ -28,6 +28,16 @@ Q 10: You are growing your enviroment and you need to migrate a baremetal based 
 : POD= application has dependency based on container dockerfile-image will be same as app and code location (From, command to run and how will my application start) | Container layers(readable/writable) data through persistence storage (NAS/expose to kubernetes cluster)
 
  
+Q 11: Blue and Green Deployments and its relation to Databases?
+A 11: 
+
+Q 12: What is the typical life cycle of an object in JVM heap?
+A 12: 
+Q 13: How would you combine a CI/CD process with Chef config management system? 
+Q 14: How would you improve it if you need to push releases after every commit to repository?
+Q 15: Type of hypervisors?
+A 15: There are two main hypervisor types, referred to as “Type 1” (or “bare metal”) and “Type 2” (or “hosted”). A type 1 hypervisor acts like a lightweight operating system and runs directly on the host's hardware, while a type 2 hypervisor runs as a software layer on an operating system, like other computer programs.
+
 The Pragmatic Programmer: From Journeyman to Master by Andrew Hunt and David Thomas
 Time Management for System Administrators by Thomas Limoncelli
 Continuous Integration: Improving Software Quality and Reducing Risk by Paul Duvall
